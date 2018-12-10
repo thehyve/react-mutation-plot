@@ -14,6 +14,7 @@
   },
   "scripts": {
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
+    "coverage": "cross-env CI=1 react-scripts test --env=jsdom --coverage",
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
     "start": "rollup -c -w",
@@ -72,5 +73,9 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react-tooltip": "^3.9.2"
+  }
 }

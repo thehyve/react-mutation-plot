@@ -1,13 +1,30 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
-import ExampleComponent from 'react-mutation-plot'
+import LollipopPlot from 'react-mutation-plot'
+import {lollipops} from './mock/lollipops.json'
+import {domains} from './mock/domains.json'
 
+const mockData = {
+  vizHeight: 130, // hardcoded
+  vizWidth: 665, // hardcoded
+  xMax: 1210, // protein length
+  yMax: 23, // max #mutations
+  hugoGeneSymbol: 'EGFR',
+  lollipops: lollipops,
+  domains: domains
+}
 export default class App extends Component {
-  render () {
+  render() {
     return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
-      </div>
+      <LollipopPlot
+        domains={mockData.domains}
+        lollipops={mockData.lollipops}
+        vizWidth={mockData.vizWidth}
+        vizHeight={mockData.vizHeight}
+        hugoGeneSymbol={mockData.hugoGeneSymbol}
+        xMax={mockData.xMax}
+        yMax={mockData.yMax}
+      />
     )
   }
 }

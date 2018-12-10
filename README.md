@@ -1,6 +1,6 @@
 # react-mutation-plot
 
-> React based  a mutation distribution graphics tool.
+> A React based mutation lollipop plot.
 
 [![NPM](https://img.shields.io/npm/v/react-mutation-plot.svg)](https://www.npmjs.com/package/react-mutation-plot) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -15,12 +15,20 @@ npm install --save react-mutation-plot
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-mutation-plot'
+import Lollipop from 'react-mutation-plot'
 
 class Example extends Component {
   render () {
     return (
-      <MyComponent />
+      <LollipopPlot
+        domains={domains}
+        lollipops={lollipops}
+        vizWidth={vizWidth}
+        vizHeight={vizHeight}
+        hugoGeneSymbol={hugoGeneSymbol}
+        xMax={xMax}
+        yMax={yMax}
+      />
     )
   }
 }
