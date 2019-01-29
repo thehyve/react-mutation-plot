@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Lollipop, {lollipopSpec} from './components/Lollipop'
 import Domain, {domainSpec} from './components/Domain'
 import SVGAxis from './components/SVGAxis'
-import Tooltip, {getTooltipContent} from './components/Tooltip'
+import Tooltip from './components/Tooltip'
 
 const LOLLIPOP_ID_CLASS_PREFIX = 'lollipop-'
 const DOMAIN_ID_CLASS_PREFIX = 'domain-'
@@ -240,7 +240,8 @@ class LollipopPlot extends React.Component {
             label={`# ${this.props.hugoGeneSymbol} Mutations`}
           />
         </svg>
-        <Tooltip id='svgTooltip' />
+        <Tooltip id='domainTooltip' />
+        <Tooltip id='lollipopTooltip' />
       </React.Fragment>
     )
   }

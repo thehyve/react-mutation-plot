@@ -85,7 +85,7 @@ class Domain extends React.Component {
           height={this.props.height}
           style={{opacity: 0}}
           data-tip={getTooltipContent(this.props.tooltip)}
-          data-for='svgTooltip'
+          data-for='domainTooltip'
         />
       </g>
     )

@@ -72,7 +72,7 @@ class Lollipop extends React.Component {
           cx={this.circleX()}
           cy={this.circleY()}
           data-tip={getTooltipContent(this.props.tooltip)}
-          data-for='svgTooltip'
+          data-for='lollipopTooltip'
         />
         {label}
       </g>

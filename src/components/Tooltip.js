@@ -8,21 +8,27 @@ export const getTooltipContent = (tooltip) => {
   return (`<div>${header}${body}</div>`)
 }
 
-const getContentHandler = (dataTip) => {
-  if (!dataTip) return ''
-  return (dataTip)
+class Tooltip extends React.Component {
+  componentDidUpdate() {
+    ReactTooltip.rebuild()
+  }
+
+  getContentHandler = (dataTip) => {
+    if (!dataTip) return ''
+    return (dataTip)
+  }
+
+  render() {
+    return (<ReactTooltip
+      id={this.props.id}
+      html={true}
+      getContent={this.getContentHandler}
+    />)
+  }
 }
 
-const tooltip = (props) => {
-  return (<ReactTooltip
-    id={props.id}
-    html={true}
-    getContent={getContentHandler}
-  />)
-}
-
-tooltip.propTypes = {
+Tooltip.propTypes = {
   id: PropTypes.string
 }
 
-export default tooltip
+export default Tooltip
