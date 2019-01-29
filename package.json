@@ -1,8 +1,8 @@
 {
   "name": "react-mutation-plot",
-  "version": "1.0.0",
-  "description": "React based  a mutation distribution graphics tool.",
-  "author": "",
+  "version": "1.0.1",
+  "description": "A light weight React based mutation lollipop plot.",
+  "author": "Riza Nugraha",
   "license": "MIT",
   "repository": "/react-mutation-plot",
   "main": "dist/index.js",
