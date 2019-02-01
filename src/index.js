@@ -41,7 +41,7 @@ class LollipopPlot extends React.Component {
 
   domains = () => {
     const {domains} = this.props
-    return domains.map((domain, index) => {
+    return domains ? domains.map((domain, index) => {
       const x = this.codonToX(domain.startCodon)
       const width = this.codonToX(domain.endCodon) - x
       return (
@@ -59,7 +59,7 @@ class LollipopPlot extends React.Component {
           spec={domain}
         />
       )
-    })
+    }) : ''
   }
 
   lollipops = () => {
