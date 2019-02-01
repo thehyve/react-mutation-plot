@@ -66,7 +66,7 @@ class LollipopPlot extends React.Component {
     const hoverHeadRadius = 5
     return this.props.lollipops.map((lollipop, i) => {
       return (<Lollipop
-        key={lollipop.codon}
+        key={`${lollipop.codon}-${i}`}
         x={this.geneX() + this.codonToX(lollipop.codon)}
         stickBaseY={this.geneY()}
         stickHeight={this.countToHeight(lollipop.count)}
