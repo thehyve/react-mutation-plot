@@ -193,10 +193,60 @@ class LollipopPlot extends React.Component {
     return (this.props.lollipops.find(lollipop => (lollipop.count > this.yMax())) ? '>= ' : '') + this.yMax()
   }
 
+  renderDomainLegendItems = (uniqueDomains) => {
+    return uniqueDomains.map((d, idx) => {
+      return (
+        <React.Fragment>
+          <rect
+            fill={d.color}
+            x={770}
+            y={32 + (15 * idx) + 'px'}
+            width={10}
+            height={10}
+          />
+          <text
+            x={785}
+            y={40 + (15 * idx) + 'px'}
+            style={{
+              fontSize: '11px',
+              fontFamily: 'arial'
+            }}
+          >
+            {d.label}
+          </text>
+        </React.Fragment>)
+    })
+  }
+
+  pfamDomainsLegend = () => {
+    const {domains} = this.props
+    const uniqueDomains = Array.from(new Set(domains.map(d => d.label)))
+      .map(label => ({
+        label: label,
+        color: domains.find(d => d.label === label).color
+      }))
+    return (
+      <g>
+        <text x='770'
+          y='20'
+          style={{
+            fontSize: '12px',
+            fontWeight: 'bold',
+            fontFamily: 'arial',
+            fill: '#333'
+          }}
+        >
+          Pfam domains:
+        </text>
+        {this.renderDomainLegendItems(uniqueDomains)}
+      </g>
+    )
+  }
+
   render() {
     return (
       <React.Fragment>
-        <svg xmlns='http://www.w3.org/2000/svg' width={this.svgWidth()} height={this.svgHeight()}
+        <svg xmlns='http://www.w3.org/2000/svg' width={this.svgWidth() + 200} height={this.svgHeight()}
           className='lollipop-svgnode'>
           <rect
             fill='#FFFFFF'
@@ -217,6 +267,7 @@ class LollipopPlot extends React.Component {
           />
           {this.lollipops()}
           {this.domains()}
+          {this.pfamDomainsLegend()}
           <SVGAxis
             key='horz'
             x={this.geneX()}
