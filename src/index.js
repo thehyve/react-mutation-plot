@@ -69,6 +69,7 @@ class LollipopPlot extends React.Component {
     return lollipops.map((lollipop, i) => {
       return (<Lollipop
         key={`${lollipop.codon}-${i}`}
+        id={lollipop.id}
         x={this.geneX() + this.codonToX(lollipop.codon)}
         stickBaseY={this.geneY()}
         stickHeight={this.countToHeight(lollipop.count)}

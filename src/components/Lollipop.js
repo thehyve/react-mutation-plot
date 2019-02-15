@@ -112,6 +112,7 @@ Lollipop.propTypes = {
     fontFamily: PropTypes.string
   }),
   tooltip: PropTypes.any,
+  id: PropTypes.string,
   onClick: PropTypes.func
 }
 
