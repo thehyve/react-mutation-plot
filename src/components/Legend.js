@@ -4,7 +4,7 @@ import * as React from 'react'
 const renderDomainLegendItems = (uniqueDomains) => {
   return uniqueDomains.map((d, idx) => {
     return (
-      <React.Fragment>
+      <React.Fragment key={`${d.label}_${idx}`}>
         <rect
           fill={d.color}
           x={770}

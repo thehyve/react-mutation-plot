@@ -64,8 +64,9 @@ class LollipopPlot extends React.Component {
   }
 
   lollipops = () => {
+    const {lollipops, onLollipopClick} = this.props
     const hoverHeadRadius = 5
-    return this.props.lollipops.map((lollipop, i) => {
+    return lollipops.map((lollipop, i) => {
       return (<Lollipop
         key={`${lollipop.codon}-${i}`}
         x={this.geneX() + this.codonToX(lollipop.codon)}
@@ -76,6 +77,7 @@ class LollipopPlot extends React.Component {
         label={lollipop.label}
         headColor={lollipop.color}
         tooltip={lollipop.tooltip}
+        onClick={onLollipopClick}
       />
       )
     })
@@ -257,7 +259,8 @@ LollipopPlot.propTypes = {
   vizHeight: PropTypes.number,
   xMax: PropTypes.number,
   yMax: PropTypes.number,
-  hugoGeneSymbol: PropTypes.string
+  hugoGeneSymbol: PropTypes.string,
+  onLollipopClick: PropTypes.func
 }
 
 export default LollipopPlot

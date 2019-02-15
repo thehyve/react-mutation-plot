@@ -13,6 +13,11 @@ const mockData = {
   lollipops: lollipops,
   domains: domains
 }
+
+const onLollipopClickHandler = (data) => {
+  console.log('onLollipopClick', data)
+}
+
 export default class App extends Component {
   render() {
     return (
@@ -24,6 +29,7 @@ export default class App extends Component {
         hugoGeneSymbol={mockData.hugoGeneSymbol}
         xMax={mockData.xMax}
         yMax={mockData.yMax}
+        onLollipopClick={onLollipopClickHandler}
       />
     )
   }

@@ -7,6 +7,7 @@ export const lollipops = [
       'body': 'Description'
     },
     'color': '#008000',
+    'id': 'variant-id-001',
     'label': {
       'text': 'L858R',
       'textAnchor': 'middle',

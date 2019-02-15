@@ -15,8 +15,15 @@ export const lollipopSpec = PropTypes.shape({
 })
 
 class Lollipop extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isSelected: false
+    }
+  }
+
   headRadius = () => {
-    return this.props.headRadius
+    return this.state.isSelected ? this.props.hoverHeadRadius : this.props.headRadius
   }
 
   circleX = () => {
@@ -34,6 +41,15 @@ class Lollipop extends React.Component {
       width: this.props.hoverHeadRadius * 2,
       height: this.props.hoverHeadRadius * 2
     }
+  }
+
+  onClickHandler = (e) => {
+    if (this.props.onClick) {
+      this.props.onClick(this.props)
+    }
+    this.setState({
+      isSelected: !this.state.isSelected
+    })
   }
 
   render() {
@@ -73,6 +89,7 @@ class Lollipop extends React.Component {
           cy={this.circleY()}
           data-tip={getTooltipContent(this.props.tooltip)}
           data-for='lollipopTooltip'
+          onClick={this.onClickHandler}
         />
         {label}
       </g>
@@ -94,7 +111,8 @@ Lollipop.propTypes = {
     fontSize: PropTypes.number,
     fontFamily: PropTypes.string
   }),
-  tooltip: PropTypes.any
+  tooltip: PropTypes.any,
+  onClick: PropTypes.func
 }
 
 export default Lollipop
