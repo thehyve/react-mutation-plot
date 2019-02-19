@@ -13,7 +13,8 @@ export const lollipops = [
       'textAnchor': 'middle',
       'fontSize': 10,
       'fontFamily': 'arial'
-    }
+    },
+    'selected': true
   },
   {
     'codon': 746,
@@ -22,7 +23,8 @@ export const lollipops = [
       'header': 'Title',
       'body': 'Description'
     },
-    'color': '#993404'
+    'color': '#993404',
+    'selected': true
   },
   {
     'codon': 861,
@@ -40,7 +42,8 @@ export const lollipops = [
       'header': 'Title',
       'body': 'Description'
     },
-    'color': '#993404'
+    'color': '#993404',
+    'selected': false
   },
   {
     'codon': 768,

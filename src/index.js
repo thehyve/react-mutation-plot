@@ -78,6 +78,7 @@ class LollipopPlot extends React.Component {
         label={lollipop.label}
         headColor={lollipop.color}
         tooltip={lollipop.tooltip}
+        selected={lollipop.selected}
         onClick={onLollipopClick}
       />
       )

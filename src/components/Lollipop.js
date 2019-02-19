@@ -18,7 +18,7 @@ class Lollipop extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isSelected: false
+      isSelected: props.selected
     }
   }
 
@@ -112,6 +112,7 @@ Lollipop.propTypes = {
     fontFamily: PropTypes.string
   }),
   tooltip: PropTypes.any,
+  selected: PropTypes.bool,
   id: PropTypes.string,
   onClick: PropTypes.func
 }
