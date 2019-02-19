@@ -5,12 +5,18 @@ import {getTooltipContent} from './Tooltip'
 export const lollipopSpec = PropTypes.shape({
   codon: PropTypes.number,
   count: PropTypes.number,
+  tooltip: PropTypes.shape({
+    header: PropTypes.string,
+    body: PropTypes.string
+  }),
   label: PropTypes.shape({
     text: PropTypes.string,
     textAnchor: PropTypes.string,
     fontSize: PropTypes.number,
     fontFamily: PropTypes.string
   }),
+  id: PropTypes.string,
+  selected: PropTypes.bool,
   color: PropTypes.string
 })
 
