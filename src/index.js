@@ -7,6 +7,9 @@ import Domain, {domainSpec} from './components/Domain'
 import SVGAxis from './components/SVGAxis'
 import Tooltip from './components/Tooltip'
 import Legend from './components/Legend'
+import jsPDF from 'jspdf-yworks'
+import svg2pdf from 'svg2pdf.js'
+// import saveSvgAsPng from 'save-svg-as-png'
 
 const LOLLIPOP_ID_CLASS_PREFIX = 'lollipop-'
 const DOMAIN_ID_CLASS_PREFIX = 'domain-'
@@ -198,12 +201,32 @@ class LollipopPlot extends React.Component {
     return (this.props.lollipops.find(lollipop => (lollipop.count > this.yMax())) ? '>= ' : '') + this.yMax()
   }
 
+  handleDownloadAsPNG = () => {
+    const svgElement = document.getElementById('lollipop-svgnode')
+    const width = this.svgWidth() + 200
+    const height = this.svgHeight()
+
+    // create a new jsPDF instance
+    const pdf = new jsPDF('l', 'pt', [width, height])
+    // render the svg element
+    svg2pdf(svgElement, pdf, {
+      xOffset: 0,
+      yOffset: 0,
+      scale: 1
+    })
+    // or simply save the created pdf
+    pdf.save('lollipop.pdf')
+  }
+
   render() {
     const {domains} = this.props
     return (
       <React.Fragment>
+        <div style={{textAlign: 'left', maxWidth: this.svgWidth() + 200}}>
+          <button onClick={this.handleDownloadAsPNG}>Save as PDF</button>
+        </div>
         <svg xmlns='http://www.w3.org/2000/svg' width={this.svgWidth() + 200} height={this.svgHeight()}
-          className='lollipop-svgnode'>
+          className='lollipop-svgnode' id='lollipop-svgnode'>
           <rect
             fill='#FFFFFF'
             x={0}
