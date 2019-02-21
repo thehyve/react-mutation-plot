@@ -14,6 +14,12 @@ const mockData = {
   domains: domains
 }
 
+const options = {
+  displayDomainLabel: false,
+  displayLegend: true,
+  exportToPDF: true
+}
+
 const onLollipopClickHandler = (data) => {
   console.log('onLollipopClick', data)
 }
@@ -30,6 +36,7 @@ export default class App extends Component {
         xMax={mockData.xMax}
         yMax={mockData.yMax}
         onLollipopClick={onLollipopClickHandler}
+        options={options}
       />
     )
   }

@@ -63,7 +63,7 @@ class Domain extends React.Component {
       props.visibility = 'hidden'
       props.style = {opacity: 0}
     }
-    return (<text {...props}>{text}</text>)
+    return (this.props.displayLabel ? <text {...props}>{text}</text> : '')
   }
 
   render() {
@@ -101,7 +101,9 @@ Domain.propTypes = {
   label: PropTypes.string,
   labelColor: PropTypes.string,
   spec: domainSpec,
-  tooltip: PropTypes.any
+  tooltip: PropTypes.any,
+  id: PropTypes.string,
+  displayLabel: PropTypes.bool
 }
 
 export default Domain

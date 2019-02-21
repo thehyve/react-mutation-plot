@@ -7,9 +7,8 @@ import Domain, {domainSpec} from './components/Domain'
 import SVGAxis from './components/SVGAxis'
 import Tooltip from './components/Tooltip'
 import Legend from './components/Legend'
-import jsPDF from 'jspdf-yworks'
+import {jsPDF as JsPDF} from 'jspdf-yworks'
 import svg2pdf from 'svg2pdf.js'
-// import saveSvgAsPng from 'save-svg-as-png'
 
 const LOLLIPOP_ID_CLASS_PREFIX = 'lollipop-'
 const DOMAIN_ID_CLASS_PREFIX = 'domain-'
@@ -21,6 +20,12 @@ const xAxisHeight = 30
 const yAxisWidth = 50
 const geneHeight = 14
 const domainHeight = 24
+
+const optionsSpec = PropTypes.shape({
+  displayDomainLabel: PropTypes.bool,
+  displayLegend: PropTypes.bool,
+  exportToPDF: PropTypes.bool
+})
 
 class LollipopPlot extends React.Component {
   codonToX = (codon) => {
@@ -44,7 +49,7 @@ class LollipopPlot extends React.Component {
   }
 
   domains = () => {
-    const {domains} = this.props
+    const {domains, options} = this.props
     return domains ? domains.map((domain, index) => {
       const x = this.codonToX(domain.startCodon)
       const width = this.codonToX(domain.endCodon) - x
@@ -61,6 +66,7 @@ class LollipopPlot extends React.Component {
           tooltip={domain.tooltip}
           labelColor={domain.labelColor}
           spec={domain}
+          displayLabel={options.displayDomainLabel}
         />
       )
     }) : ''
@@ -207,7 +213,7 @@ class LollipopPlot extends React.Component {
     const height = this.svgHeight()
 
     // create a new jsPDF instance
-    const pdf = new jsPDF('l', 'pt', [width, height])
+    const pdf = new JsPDF('l', 'pt', [width, height])
     // render the svg element
     svg2pdf(svgElement, pdf, {
       xOffset: 0,
@@ -218,13 +224,29 @@ class LollipopPlot extends React.Component {
     pdf.save('lollipop.pdf')
   }
 
-  render() {
-    const {domains} = this.props
-    return (
-      <React.Fragment>
+  renderLegend = (options, domains) => {
+    if (options.displayLegend) {
+      return <Legend domains={domains} />
+    } else {
+      return ''
+    }
+  }
+
+  renderExportToPDF = (options) => {
+    if (options.displayLegend) {
+      return (
         <div style={{textAlign: 'left', maxWidth: this.svgWidth() + 200}}>
           <button onClick={this.handleDownloadAsPNG}>Save as PDF</button>
         </div>
+      )
+    }
+  }
+
+  render() {
+    const {options, domains} = this.props
+    return (
+      <React.Fragment>
+        {this.renderExportToPDF(options)}
         <svg xmlns='http://www.w3.org/2000/svg' width={this.svgWidth() + 200} height={this.svgHeight()}
           className='lollipop-svgnode' id='lollipop-svgnode'>
           <rect
@@ -246,7 +268,7 @@ class LollipopPlot extends React.Component {
           />
           {this.lollipops()}
           {this.domains()}
-          <Legend domains={domains} />
+          {this.renderLegend(options, domains)}
           <SVGAxis
             key='horz'
             x={this.geneX()}
@@ -276,6 +298,13 @@ class LollipopPlot extends React.Component {
     )
   }
 }
+LollipopPlot.defaultProps = {
+  options: {
+    displayDomainLabel: false,
+    displayLegend: true,
+    exportToPDF: true
+  }
+}
 
 LollipopPlot.propTypes = {
   lollipops: PropTypes.arrayOf(lollipopSpec),
@@ -285,7 +314,8 @@ LollipopPlot.propTypes = {
   xMax: PropTypes.number,
   yMax: PropTypes.number,
   hugoGeneSymbol: PropTypes.string,
-  onLollipopClick: PropTypes.func
+  onLollipopClick: PropTypes.func,
+  options: optionsSpec
 }
 
 export default LollipopPlot
