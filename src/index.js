@@ -207,10 +207,12 @@ class LollipopPlot extends React.Component {
     return (this.props.lollipops.find(lollipop => (lollipop.count > this.yMax())) ? '>= ' : '') + this.yMax()
   }
 
-  handleDownloadAsPNG = () => {
+  handleDownloadAsPNG = (hugoGeneSymbol) => {
     const svgElement = document.getElementById('lollipop-svgnode')
     const width = this.svgWidth() + 200
     const height = this.svgHeight()
+    const suffix = 'lollipop.pdf'
+    const fileName = hugoGeneSymbol ? `${hugoGeneSymbol}-${suffix}` : suffix
 
     // create a new jsPDF instance
     const pdf = new JsPDF('l', 'pt', [width, height])
@@ -221,7 +223,7 @@ class LollipopPlot extends React.Component {
       scale: 1
     })
     // or simply save the created pdf
-    pdf.save('lollipop.pdf')
+    pdf.save(`${fileName}`)
   }
 
   renderLegend = (options, domains) => {
@@ -232,21 +234,21 @@ class LollipopPlot extends React.Component {
     }
   }
 
-  renderExportToPDF = (options) => {
+  renderExportToPDF = (options, hugoGeneSymbol) => {
     if (options.displayLegend) {
       return (
         <div style={{textAlign: 'left', maxWidth: this.svgWidth() + 200}}>
-          <button onClick={this.handleDownloadAsPNG}>Save as PDF</button>
+          <button onClick={() => this.handleDownloadAsPNG(hugoGeneSymbol)}>Save as PDF</button>
         </div>
       )
     }
   }
 
   render() {
-    const {options, domains} = this.props
+    const {options, domains, hugoGeneSymbol} = this.props
     return (
       <React.Fragment>
-        {this.renderExportToPDF(options)}
+        {this.renderExportToPDF(options, hugoGeneSymbol)}
         <svg xmlns='http://www.w3.org/2000/svg' width={this.svgWidth() + 200} height={this.svgHeight()}
           className='lollipop-svgnode' id='lollipop-svgnode'>
           <rect
@@ -289,7 +291,7 @@ class LollipopPlot extends React.Component {
             rangeUpper={this.yMax()}
             ticks={this.yTicks()}
             vertical={true}
-            label={`# ${this.props.hugoGeneSymbol} Mutations`}
+            label={`# ${hugoGeneSymbol} Mutations`}
           />
         </svg>
         <Tooltip id='domainTooltip' />
