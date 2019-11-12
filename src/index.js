@@ -235,7 +235,7 @@ class LollipopPlot extends React.Component {
   }
 
   renderExportToPDF = (options, hugoGeneSymbol) => {
-    if (options.displayLegend) {
+    if (options.exportToPDF) {
       return (
         <div style={{textAlign: 'left', maxWidth: this.svgWidth() + 200}}>
           <button onClick={() => this.handleDownloadAsPNG(hugoGeneSymbol)}>Save as PDF</button>
