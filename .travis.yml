@@ -1,4 +1,13 @@
 language: node_js
 node_js:
-  - 9
-  - 8
+  - 14
+  - 12
+  - 11
+  - 10
+
+install:
+  - yarn
+  - yarn build
+
+script:
+  - yarn coverage

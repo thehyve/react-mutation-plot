@@ -2,7 +2,9 @@
 
 > A light weight adaptation React based mutation lollipop plot from [cBioPortal frontend](https://github.com/cBioPortal/cbioportal-frontend).
 
-[![NPM](https://img.shields.io/npm/v/react-mutation-plot.svg)](https://www.npmjs.com/package/react-mutation-plot) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-mutation-plot.svg)](https://www.npmjs.com/package/react-mutation-plot)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![build status](https://img.shields.io/travis/thehyve/react-mutation-plot/master.svg)](https://travis-ci.org/thehyve/react-mutation-plot)
 
 ![schermafbeelding 2019-02-19 om 17 56 14](https://user-images.githubusercontent.com/2835281/53032819-e6d14780-346f-11e9-8623-1e9e5b39b0ea.png)
 
